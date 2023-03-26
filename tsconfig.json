@@ -16,7 +16,14 @@
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/components": ["src/components/index"],
+      "@/screens": ["src/screens/index"],
+      "@/stores": ["src/stores/index"],
+      "@/config": ["src/config/index"],
+    }   
   },
   "exclude": ["node_modules"],
 }
