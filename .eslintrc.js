@@ -8,7 +8,9 @@ module.exports = {
     'react/jsx-filename-extension': 'off',
     '@typescript-eslint/no-shadow': 'off',
     '@typescript-eslint/lines-between-class-members': 'off',
-    '@typescript-eslint/no-loop-func': 'off'
+    '@typescript-eslint/no-loop-func': 'off',
+    "no-use-before-define": "off",
+    "@typescript-eslint/no-use-before-define": "off"
   },
   parserOptions: {
     project: './tsconfig.json',
