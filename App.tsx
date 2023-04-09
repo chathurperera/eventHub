@@ -4,7 +4,10 @@ import React from 'react'
 const App = () => {
   return (
     <View>
-      <Text>TEST</Text>
+      <Text>TE</Text>
+      <Text>TE</Text>
+      <Text>TE</Text>
+      <Text>TE</Text>
     </View>
   )
 }

@@ -20,12 +20,5 @@ export enum TextVariant {
   Subtitle1 = 'Subtitle1',
   Subtitle2 = 'Subtitle2',
 
-  //Button
-  ButtonText = 'ButtonText', 
 
-  //Link
-  LinkText =  'LinkText',
-
-  //Label
-  LabelText = 'LabelText'
 }
