@@ -41,15 +41,22 @@ enum Background {
   EH300 = `#E5E5E5`,
 }
 
+enum Neutral {
+  Black = `#000000`,
+  White = `#ffffff`,
+  EH100 = `#ffffff31`
+}
+
 const EventHubThemePalette = {
   PrimaryBlue,
+  Neutral,
   SecondaryCyan,
   DarkShade,
   Accent,
   Background
 };
 
-export type Color = PrimaryBlue | SecondaryCyan | DarkShade | Accent | Background;
+export type Color = PrimaryBlue | SecondaryCyan | DarkShade | Accent | Background | Neutral;
 
 export const Color = {
   ...EventHubThemePalette,
