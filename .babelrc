@@ -1,0 +1,30 @@
+{
+  "presets": ["module:metro-react-native-babel-preset"],
+  "env": {
+    "production": {
+      "plugins": ["react-native-paper/babel"]
+    }
+  },
+  "plugins": [
+    [
+      "module-resolver",
+      {
+        "root": ["./src"],
+        "extensions": [".ios.ts", ".android.ts", ".ts", ".ios.tsx", ".android.tsx", ".tsx", ".jsx", ".js", ".json"],
+        "alias": {
+          "@EH/assets": "./src/assets/index",
+          "@EH/components": "./src/components/index",
+          "@EH/configs": "./src/configs/index",
+          "@EH/constants": "./src/constants/index",
+          "@EH/hooks": "./src/hooks/index",
+          "@EH/routes": "./src/routes/index",
+          "@EH/screens": "./src/screens/index",
+          "@EH/utils": "./src/utils/index"
+          // "@EH/models": "./src/models/index",
+          // "@EH/services": "./src/services/index",
+          // "@EH/stores": "./src/stores/index",
+        }
+      }
+    ]
+  ]
+}

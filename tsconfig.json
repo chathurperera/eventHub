@@ -19,11 +19,15 @@
     "skipLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@/components": ["src/components/index"],
-      "@/screens": ["src/screens/index"],
-      "@/stores": ["src/stores/index"],
-      "@/config": ["src/config/index"],
-    }   
+      "@EH/assets": ["./src/assets/index"],
+      "@EH/components": ["./src/components/index"],
+      "@EH/configs": ["./src/configs/index"],
+      "@EH/constants": ["./src/constants/index"],
+      "@EH/hooks": ["./src/hooks/index"],
+      "@EH/routes": ["./src/routes/index"],
+      "@EH/screens": ["./src/screens/index"],
+      "@EH/utils": ["./src/utils/index"]
+      }, 
   },
   "exclude": ["node_modules"],
 }
