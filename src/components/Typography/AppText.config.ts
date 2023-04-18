@@ -111,7 +111,7 @@ export function getAppTextStyles(variant: TextVariant) {
       case TextVariant.Body1Regular:
       case TextVariant.Body2Regular:
       case TextVariant.Body3Regular:
-        textStyles += ' font-AirbnbCerealExtraBold';
+        textStyles += ' font-AirbnbCerealBlack';
         break;
     }
   

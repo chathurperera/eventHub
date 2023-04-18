@@ -1,11 +1,11 @@
 import React, { PropsWithChildren } from 'react';
 import { Text as RNText } from 'react-native';
 
-import { Color, TextAlignment } from '../../constants';
+import { tw } from '@EH/configs';
+import { Color, TextAlignment } from '@EH/constants';
 
 import { AppTextStyles, getAppTextStyles } from './AppText.config';
 import { AppTextProps } from './AppText.types';
-import tw from 'twrnc';
 
 export function Text({
   color = Color.DarkShade.EH100,

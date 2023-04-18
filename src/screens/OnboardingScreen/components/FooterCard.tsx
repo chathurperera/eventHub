@@ -2,7 +2,7 @@ import { View } from 'react-native';
 import React from 'react';
 import {tw} from '@EH/configs';
 import { Text } from '@EH/components';
-import { TextVariant } from '@EH/constants';
+import { Color, TextVariant } from '@EH/constants';
 
 interface FooterCardPropTypes {}
 
@@ -16,6 +16,9 @@ export function FooterCard() {
         <Text variant={TextVariant.Body1Regular}>
           In publishing and graphic design, Lorem is a placeholder text commonly{' '}
         </Text>
+        <View style={tw`h-5 border w-24 border-[${Color.Accent.EH500}]`}>
+
+        </View>
       </View>
     </View>
   );
