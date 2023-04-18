@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { Pressable, View } from 'react-native';
 
 import { Text } from '@EH/components';
@@ -8,14 +8,19 @@ import { Color, TextVariant } from '@EH/constants';
 import { FooterNavigation } from './FooterNavigation';
 import { FooterText } from './FooterText';
 
-interface FooterCardPropTypes {}
+interface FooterCardPropTypes {
+  setCurrentStep: React.Dispatch<SetStateAction<number>>;
+  currentStep: number;
+}
 
-export function FooterCard() {
-  const [step, setStep] = useState(0);
+export function FooterCard({
+  setCurrentStep,
+  currentStep,
+}: FooterCardPropTypes) {
   const [title, setTitle] = useState('');
 
   useEffect(() => {
-    switch (step) {
+    switch (currentStep) {
       case 0:
         setTitle('Explore Upcoming and Nearby Events');
         break;
@@ -29,13 +34,16 @@ export function FooterCard() {
         // TODO:: Should redirect to the home page
         break;
     }
-  }, [step]);
+  }, [currentStep]);
 
   return (
     <View
       style={tw`bg-[${Color.PrimaryBlue.EH100}] h-[288px] p-10 rounded-t-[48px] justify-between absolute bottom-0 inset-x-0`}>
       <FooterText title={title} />
-      <FooterNavigation setStep={setStep} step={step}/>
+      <FooterNavigation
+        setCurrentStep={setCurrentStep}
+        currentStep={currentStep}
+      />
     </View>
   );
 }
