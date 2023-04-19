@@ -1,11 +1,10 @@
-import AsyncStorage from '@react-native-async-storage/async-storage';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
-import SplashScreen from 'react-native-splash-screen';
+import { AsyncStorageService } from '@EH/services';
 
+import { Route, StorageKeys } from '@EH/constants';
 import { LoginScreen, OnboardingScreen } from '@EH/screens';
-import { Route } from '@EH/constants';
 
 const Stack = createNativeStackNavigator();
 
@@ -14,10 +13,10 @@ export function Routes() {
 
   useEffect(() => {
     async function setAppLaunch() {
-      const appData = await AsyncStorage.getItem('appLaunched');
+      const appData = AsyncStorageService.getItem(StorageKeys.AppLaunched);
       if (appData == null) {
         setIsInitialLaunch(true);
-        AsyncStorage.setItem('appLaunched', 'false');
+        AsyncStorageService.setItem(StorageKeys.AppLaunched, 'true');
       } else {
         setIsInitialLaunch(false);
       }
@@ -26,11 +25,7 @@ export function Routes() {
   }, []);
 
   return (
-    <NavigationContainer
-    // onReady={() => {
-    //   SplashScreen.hide();
-    // }}
-    >
+    <NavigationContainer>
       <Stack.Navigator
         initialRouteName={isInitialLaunch ? Route.Onboarding : Route.Login}
         screenOptions={{
