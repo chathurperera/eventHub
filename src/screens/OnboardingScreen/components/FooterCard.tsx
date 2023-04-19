@@ -1,9 +1,8 @@
 import React, { SetStateAction, useEffect, useState } from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
-import { Text } from '@EH/components';
 import { tw } from '@EH/configs';
-import { Color, TextVariant } from '@EH/constants';
+import { Color } from '@EH/constants';
 
 import { FooterNavigation } from './FooterNavigation';
 import { FooterText } from './FooterText';
