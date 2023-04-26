@@ -1,0 +1,19 @@
+import React from 'react';
+import { View } from 'react-native';
+import { Button as RNPaperButton } from 'react-native-paper';
+
+import { Text } from '@EH/components';
+import { tw } from '@EH/configs';
+import { TextVariant } from '@EH/constants';
+
+import { ButtonProps } from './Button.types';
+
+export function Button({ title }: ButtonProps) {
+  return (
+    <View style={tw`flex-row`}>
+      <RNPaperButton mode='outlined'>
+        <Text variant={TextVariant.Body1Regular}>{title}</Text>
+      </RNPaperButton>
+    </View>
+  );
+}
