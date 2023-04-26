@@ -1,3 +1,4 @@
+import { yupResolver } from '@hookform/resolvers/yup';
 import React, { useEffect, useState } from 'react';
 import {
   Controller,
