@@ -8,10 +8,10 @@ import { TextVariant } from '@EH/constants';
 
 import { ButtonProps } from './Button.types';
 
-export function Button({ title }: ButtonProps) {
+export function Button({ title, onPress }: ButtonProps) {
   return (
     <View style={tw`flex-row`}>
-      <RNPaperButton mode='outlined'>
+      <RNPaperButton mode="outlined" onPress={onPress}>
         <Text variant={TextVariant.Body1Regular}>{title}</Text>
       </RNPaperButton>
     </View>

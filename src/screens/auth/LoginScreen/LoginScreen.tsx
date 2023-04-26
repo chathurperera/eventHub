@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
-import { Controller, SubmitHandler, useForm } from 'react-hook-form';
+import {
+  Controller,
+  SubmitErrorHandler,
+  SubmitHandler,
+  useForm,
+} from 'react-hook-form';
 import { Image, SafeAreaView, TextInput, View } from 'react-native';
 
 import { Button, Text } from '@EH/components';
@@ -17,6 +22,9 @@ export function LoginScreen() {
 
   const onSubmit: SubmitHandler<LoginFormValues> = data =>
     console.log('data', data);
+
+  const onFormInvalid: SubmitErrorHandler<LoginFormValues> = () =>
+    console.log('errors', errors);
 
   return (
     <SafeAreaView>
@@ -57,7 +65,7 @@ export function LoginScreen() {
             )}
           />
         </View>
-        <Button title='Login' />
+        <Button title="Login" onPress={handleSubmit(onSubmit, onFormInvalid)} />
       </View>
     </SafeAreaView>
   );
