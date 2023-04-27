@@ -1,3 +1,8 @@
+export interface LoginUserData {
+  username: string;
+  password: string;
+}
+
 export interface UserState {
   isAuthenticated: boolean;
   isLoading: boolean;

@@ -4,7 +4,7 @@ import { Provider as PaperProvider } from 'react-native-paper';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
 import { Provider } from 'react-redux';
 import { useDeviceContext } from 'twrnc';
-
+import {store} from '@EH/stores';
 import { tw } from '@EH/configs';
 
 import App from './App';
@@ -14,7 +14,7 @@ export function Main(){
 
   return (
     <Provider store={store}>
-      <PaperProvider theme={paperTheme}>
+      <PaperProvider>
         <SafeAreaProvider>
           <App />
         </SafeAreaProvider>

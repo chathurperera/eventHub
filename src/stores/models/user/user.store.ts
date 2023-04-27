@@ -1,16 +1,24 @@
 import { createModel } from '@rematch/core';
-import { RootModel } from '..';
-import { UserState, ResponseType } from '../user/user.types';
 
+import { LoginUserData } from '@EH/models';
+
+import { RootModel } from '..';
+
+export interface UserState {
+  isAuthenticated: boolean;
+  accessToken: string | null;
+  user: {
+    email: string;
+    userName: string;
+  };
+}
 
 const initialState: UserState = {
   isAuthenticated: false,
-  isLoading: false,
-  errorMessage: '',
+  accessToken: null,
   user: {
-    userName: '',
     email: '',
-    token: '',
+    userName: '',
   },
 };
 
@@ -21,50 +29,25 @@ export const userStore = createModel<RootModel>()({
     setIsAuthenticated(state: UserState, payload: boolean) {
       return { ...state, isAuthenticated: payload };
     },
-    setUser(state: UserState, payload: { userName: string; email: string; token: string }) {
+    setAccessToken(state: UserState, accessToken: string | null) {
+      return { ...state, accessToken };
+    },
+
+    setUser(state: UserState, payload: { userName: string; email: string }) {
       return { ...state, user: payload };
-    },
-    setLoading(state: UserState, payload: boolean) {
-      return { ...state, isLoading: payload };
-    },
-    setError(state: UserState, payload: string) {
-      return { ...state, errorMessage: payload };
-    },
-    logout(state: UserState) {
-      return { ...initialState };
     },
   },
 
   effects: dispatch => ({
-    async login(payload: { email: string; password: string }, state) {
-      try {
-        dispatch.userStore.setLoading(true);
+    async loginUserWithCredentials(payload: LoginUserData) {
+      const data = await AuthService.loginUserWithCredentials(payload);
+      dispatch.userStore.setAccessToken(data.accessToken);
+      dispatch.userStore.setIsAuthenticated(true);
+    },
 
-        const user: ResponseType = await new Promise((resolve, reject) => {
-          setTimeout(() => {
-            if (payload.email === 'john@gmail.com' && payload.password === 'john') {
-              resolve({
-                success: true,
-                message: 'Login successful',
-                data: {
-                  userName: 'john',
-                  email: 'john@gmail.com',
-                  token: 'adn2938*wn0932n031nda3^&#*dfdaf%$@3d0afw3208jpvao8h+n39d&%da$@',
-                },
-              });
-            } else {
-              reject({ success: false, message: 'Invalid credentials' });
-            }
-          }, 2000);
-        });
-
-        dispatch.userStore.setLoading(false);
-        dispatch.userStore.setUser(user.data);
-        dispatch.userStore.setIsAuthenticated(true);
-      } catch (error: any) {
-        dispatch.userStore.setLoading(false);
-        dispatch.userStore.setError(error.message);
-      }
+    async logout() {
+      dispatch.userStore.setAccessToken(null);
+      dispatch.userStore.setIsAuthenticated(false);
     },
   }),
 });

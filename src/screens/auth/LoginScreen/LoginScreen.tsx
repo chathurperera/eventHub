@@ -1,5 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Controller,
   SubmitErrorHandler,
@@ -13,13 +13,17 @@ import { tw } from '@EH/configs';
 import { TextAlignment, TextVariant } from '@EH/constants';
 
 import { LoginFormValues } from './login.interface';
+import { loginValidationSchema } from './login.validations';
 
 export function LoginScreen() {
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({ mode: 'onChange' });
+  } = useForm({
+    mode: 'onChange',
+    resolver: yupResolver(loginValidationSchema),
+  });
 
   const onSubmit: SubmitHandler<LoginFormValues> = data =>
     console.log('data', data);
