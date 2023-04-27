@@ -1,6 +1,7 @@
 import { createModel } from '@rematch/core';
 
 import { LoginUserData } from '@EH/models';
+import { AuthService } from '@EH/services';
 
 import { RootModel } from '..';
 

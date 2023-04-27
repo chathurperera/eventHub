@@ -3,23 +3,11 @@ export interface LoginUserData {
   password: string;
 }
 
-export interface UserState {
-  isAuthenticated: boolean;
-  isLoading: boolean;
-  errorMessage: string;
-  user: {
-    userName: string;
-    email: string;
-    token: string;
-  };
-}
 
-export interface ResponseType {
-  success: boolean;
-  message: string;
+export interface LoginResponse {
   data: {
-    userName: string;
     email: string;
-    token: string;
+    userName: string;
   };
+  accessToken:string
 }
