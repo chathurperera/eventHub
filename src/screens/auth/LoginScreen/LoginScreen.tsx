@@ -1,4 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import React from 'react';
 import {
   Controller,
@@ -8,25 +9,45 @@ import {
 } from 'react-hook-form';
 import { Image, SafeAreaView, TextInput, View } from 'react-native';
 
-import { Button, Text } from '@EH/components';
+import { Button, Text, TextField } from '@EH/components';
 import { tw } from '@EH/configs';
-import { TextAlignment, TextVariant } from '@EH/constants';
+import { Route, TextAlignment, TextVariant } from '@EH/constants';
+import { AppStackParamList } from '@EH/routes';
+import { useDispatch, useSelector } from '@EH/stores';
 
 import { LoginFormValues } from './login.interface';
 import { loginValidationSchema } from './login.validations';
 
-export function LoginScreen() {
+export type LoginScreenProps = NativeStackScreenProps<
+  AppStackParamList,
+  Route.Login
+>;
+
+export function LoginScreen({ navigation }: LoginScreenProps) {
   const {
     control,
     handleSubmit,
     formState: { errors, isValid },
-  } = useForm({
+  } = useForm<LoginFormValues>({
     mode: 'onChange',
     resolver: yupResolver(loginValidationSchema),
   });
 
-  const onSubmit: SubmitHandler<LoginFormValues> = data =>
-    console.log('data', data);
+  const loading = useSelector(
+    state => state.loading.effects.userStore.loginUserWithCredentials,
+  );
+
+  const dispatch = useDispatch();
+
+  const onSubmit: SubmitHandler<LoginFormValues> = async userData => {
+    try {
+      await dispatch.userStore.loginUserWithCredentials(userData);
+      navigation.navigate('Home');
+    } catch (error) {
+      //TODO:: handle the error
+      console.log('error', error);
+    }
+  };
 
   const onFormInvalid: SubmitErrorHandler<LoginFormValues> = () =>
     console.log('errors', errors);
@@ -44,15 +65,23 @@ export function LoginScreen() {
           <Text variant={TextVariant.Heading3} textAlign={TextAlignment.Left}>
             Login
           </Text>
+
           <Controller
             control={control}
             name="email"
             render={({ field: { onChange, value, onBlur } }) => (
-              <TextInput
-                onChangeText={value => onChange(value)}
+              // <TextInput
+              //   onChangeText={value => onChange(value)}
+              //   value={value}
+              //   caretHidden={false}
+              //   onBlur={onBlur}
+              //   style={tw`border mb-2 p-3`}
+              // />
+              <TextField
                 value={value}
+                placeholder='abc@email.com'
                 onBlur={onBlur}
-                style={tw`border mb-2 p-3`}
+                onChangeText={value => onChange(value)}
               />
             )}
           />
@@ -70,7 +99,11 @@ export function LoginScreen() {
             )}
           />
         </View>
-        <Button title="Login" onPress={handleSubmit(onSubmit, onFormInvalid)} />
+        <Button
+          title="Login"
+          onPress={handleSubmit(onSubmit, onFormInvalid)}
+          loading={loading}
+        />
       </View>
     </SafeAreaView>
   );

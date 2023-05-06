@@ -1,0 +1,1 @@
+export { default as MailIconSvg } from './icons/Mail.svg';

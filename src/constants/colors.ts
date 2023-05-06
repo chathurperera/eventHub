@@ -16,6 +16,7 @@ enum SecondaryCyan {
   EH400 = `#99FCFF`,
   EH500 = `#CCFEFF`,
   EH600 = `#E6FEFF`,
+  EH700 = `#747688`,
 }
 enum DarkShade {
   EH100 = `#120D26`,
@@ -44,7 +45,8 @@ enum Background {
 enum Neutral {
   Black = `#000000`,
   White = `#ffffff`,
-  EH100 = `#ffffff31`
+  EH100 = `#ffffff31`,
+  EH200 = `#E4DFDF`
 }
 
 const EventHubThemePalette = {

@@ -2,7 +2,7 @@ import React from 'react';
 import { View } from 'react-native';
 import { Button as RNPaperButton } from 'react-native-paper';
 
-import { Text } from '@EH/components';
+import { Text } from '../Typography';
 import { tw } from '@EH/configs';
 import { TextVariant } from '@EH/constants';
 

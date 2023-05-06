@@ -4,9 +4,15 @@ import { useEffect, useState } from 'react';
 import { AsyncStorageService } from '@EH/services';
 
 import { Route, StorageKeys } from '@EH/constants';
-import { LoginScreen, OnboardingScreen } from '@EH/screens';
+import { LoginScreen, OnboardingScreen, HomeScreen, LoginScreenProps,  } from '@EH/screens';
 
-const Stack = createNativeStackNavigator();
+export type AppStackParamList = {
+  [Route.Login]: {};
+  [Route.Onboarding]: undefined;
+  [Route.Home]:undefined
+};
+
+const Stack = createNativeStackNavigator<AppStackParamList>();
 
 export function Routes() {
   const [isInitialLaunch, setIsInitialLaunch] = useState(false);
@@ -25,6 +31,7 @@ export function Routes() {
   }, []);
 
   return (
+    //TODO:: figure out a way to use enum values instead of hard coded strings 
     <NavigationContainer>
       <Stack.Navigator
         initialRouteName={isInitialLaunch ? Route.Onboarding : Route.Login}
@@ -33,6 +40,7 @@ export function Routes() {
         }}>
         <Stack.Screen name={Route.Login} component={LoginScreen} />
         <Stack.Screen name={Route.Onboarding} component={OnboardingScreen} />
+        <Stack.Screen name={Route.Home} component={HomeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
