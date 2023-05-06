@@ -9,7 +9,7 @@ import {
 } from 'react-hook-form';
 import { Image, SafeAreaView, TextInput, View } from 'react-native';
 
-import { Button, Text, TextField } from '@EH/components';
+import { Button, MailIcon, Text, TextField } from '@EH/components';
 import { tw } from '@EH/configs';
 import { Route, TextAlignment, TextVariant } from '@EH/constants';
 import { AppStackParamList } from '@EH/routes';
@@ -65,39 +65,36 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
           <Text variant={TextVariant.Heading3} textAlign={TextAlignment.Left}>
             Login
           </Text>
-
-          <Controller
-            control={control}
-            name="email"
-            render={({ field: { onChange, value, onBlur } }) => (
-              // <TextInput
-              //   onChangeText={value => onChange(value)}
-              //   value={value}
-              //   caretHidden={false}
-              //   onBlur={onBlur}
-              //   style={tw`border mb-2 p-3`}
-              // />
-              <TextField
-                value={value}
-                placeholder='abc@email.com'
-                onBlur={onBlur}
-                onChangeText={value => onChange(value)}
-              />
-            )}
-          />
-          <Controller
-            control={control}
-            name="password"
-            render={({ field: { onChange, value, onBlur } }) => (
-              <TextInput
-                onChangeText={value => onChange(value)}
-                value={value}
-                onBlur={onBlur}
-                secureTextEntry
-                style={tw`border p-3`}
-              />
-            )}
-          />
+          <View style={tw`mb-2`}>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value, onBlur } }) => (
+                <TextField
+                  value={value}
+                  placeholder="abc@email.com"
+                  onBlur={onBlur}
+                  leftIcon={<MailIcon />}
+                  onChangeText={value => onChange(value)}
+                />
+              )}
+            />
+          </View>
+          <View style={tw`mb-2`}>
+            <Controller
+              control={control}
+              name="email"
+              render={({ field: { onChange, value, onBlur } }) => (
+                <TextField
+                  value={value}
+                  placeholder="abc@email.com"
+                  onBlur={onBlur}
+                  leftIcon={<MailIcon />}
+                  onChangeText={value => onChange(value)}
+                />
+              )}
+            />
+          </View>
         </View>
         <Button
           title="Login"

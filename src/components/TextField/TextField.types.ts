@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react';
+import React, { ComponentProps } from 'react';
 import { TextInput } from 'react-native-paper';
 import { StyleProp, ViewStyle } from 'react-native/types';
 
@@ -35,7 +35,9 @@ type WithRNTextInputProps = Pick<
 export interface TextFieldPropTypes extends WithRNTextInputProps {
   innerTextInputStyles?: StyleProp<ViewStyle>;
   label?: string;
+  leftIcon?: React.ReactNode,
   placeholder?: string;
   disabled?: boolean;
   value?: string;
+  disabledColor?:string
 }
