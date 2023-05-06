@@ -1,18 +1,31 @@
-import { NavigationContainer } from '@react-navigation/native';
+import { DefaultTheme, NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { useEffect, useState } from 'react';
-import { AsyncStorageService } from '@EH/services';
 
 import { Route, StorageKeys } from '@EH/constants';
-import { LoginScreen, OnboardingScreen, HomeScreen, LoginScreenProps,  } from '@EH/screens';
+import {
+  HomeScreen,
+  LoginScreen,
+  LoginScreenProps,
+  OnboardingScreen,
+} from '@EH/screens';
+import { AsyncStorageService } from '@EH/services';
 
 export type AppStackParamList = {
   [Route.Login]: {};
   [Route.Onboarding]: undefined;
-  [Route.Home]:undefined
+  [Route.Home]: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: 'white',
+  },
+};
 
 export function Routes() {
   const [isInitialLaunch, setIsInitialLaunch] = useState(false);
@@ -31,12 +44,13 @@ export function Routes() {
   }, []);
 
   return (
-    //TODO:: figure out a way to use enum values instead of hard coded strings 
-    <NavigationContainer>
+    //TODO:: figure out a way to use enum values instead of hard coded strings
+    <NavigationContainer theme={MyTheme}>
       <Stack.Navigator
         initialRouteName={isInitialLaunch ? Route.Onboarding : Route.Login}
         screenOptions={{
           headerShown: false,
+          headerStyle: {},
         }}>
         <Stack.Screen name={Route.Login} component={LoginScreen} />
         <Stack.Screen name={Route.Onboarding} component={OnboardingScreen} />

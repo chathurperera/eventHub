@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { MailIconSvg } from '@EH/assets';
+import { EventHubLogoSvg, MailIconSvg, PasswordIconSvg } from '@EH/assets';
 import { Color } from '@EH/constants';
 
 export interface SvgIconProps {
@@ -9,9 +9,14 @@ export interface SvgIconProps {
   height?: number | string;
 }
 
-export function MailIcon({
-  width = 22,
-  height = 22,
-}: SvgIconProps) {
-  return <MailIconSvg width={width} height={height}  />;
+export function MailIcon({ width = 22, height = 22 }: SvgIconProps) {
+  return <MailIconSvg width={width} height={height} />;
+}
+
+export function EventHubLogo({ width = 163, height = 114 }: SvgIconProps) {
+  return <EventHubLogoSvg width={width} height={height} />;
+}
+
+export function PasswordIcon({ width = 22, height = 22 }: SvgIconProps) {
+  return <PasswordIconSvg width={width} height={height} />;
 }

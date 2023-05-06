@@ -9,7 +9,14 @@ import {
 } from 'react-hook-form';
 import { Image, SafeAreaView, TextInput, View } from 'react-native';
 
-import { Button, MailIcon, Text, TextField } from '@EH/components';
+import {
+  Button,
+  EventHubLogo,
+  MailIcon,
+  Text,
+  PasswordIcon,
+  TextField,
+} from '@EH/components';
 import { tw } from '@EH/configs';
 import { Route, TextAlignment, TextVariant } from '@EH/constants';
 import { AppStackParamList } from '@EH/routes';
@@ -55,24 +62,23 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
   return (
     <SafeAreaView>
       <View style={tw`p-8`}>
-        <View style={tw`pt-8`}>
-          <Image
-            source={require('../../../assets/images/logo.png')}
-            style={tw`mx-auto w-40`}
-          />
+        <View style={tw`pt-8 mx-auto`}>
+          <EventHubLogo />
         </View>
         <View style={tw`my-4`}>
-          <Text variant={TextVariant.Heading3} textAlign={TextAlignment.Left}>
-            Login
-          </Text>
+          <View style={tw`mb-2`}>
+            <Text variant={TextVariant.Heading3} textAlign={TextAlignment.Left}>
+              Login
+            </Text>
+          </View>
           <View style={tw`mb-2`}>
             <Controller
               control={control}
-              name="email"
+              name="password"
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextField
                   value={value}
-                  placeholder="abc@email.com"
+                  placeholder="Your password"
                   onBlur={onBlur}
                   leftIcon={<MailIcon />}
                   onChangeText={value => onChange(value)}
@@ -89,7 +95,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
                   value={value}
                   placeholder="abc@email.com"
                   onBlur={onBlur}
-                  leftIcon={<MailIcon />}
+                  leftIcon={<PasswordIcon />}
                   onChangeText={value => onChange(value)}
                 />
               )}

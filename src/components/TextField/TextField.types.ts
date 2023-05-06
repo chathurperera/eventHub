@@ -38,6 +38,7 @@ export interface TextFieldPropTypes extends WithRNTextInputProps {
   leftIcon?: React.ReactNode,
   placeholder?: string;
   disabled?: boolean;
+  secureTextEntry?: boolean;
   value?: string;
   disabledColor?:string
 }
