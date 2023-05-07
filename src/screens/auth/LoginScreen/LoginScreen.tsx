@@ -7,14 +7,15 @@ import {
   SubmitHandler,
   useForm,
 } from 'react-hook-form';
-import { Image, SafeAreaView, TextInput, View } from 'react-native';
+import { SafeAreaView, View } from 'react-native';
+import { Switch } from 'react-native-paper';
 
 import {
   Button,
   EventHubLogo,
   MailIcon,
-  Text,
   PasswordIcon,
+  Text,
   TextField,
 } from '@EH/components';
 import { tw } from '@EH/configs';
@@ -100,6 +101,9 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
                 />
               )}
             />
+          </View>
+          <View>
+            <Switch />
           </View>
         </View>
         <Button

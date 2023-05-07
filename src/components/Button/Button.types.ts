@@ -14,4 +14,6 @@ export interface ButtonProps extends WithRNPaperButtonProps {
   title: string;
   textColor?: Color;
   loading?: boolean;
+  fullWidth?: boolean;
+  
 }

@@ -20,7 +20,8 @@ export enum TextVariant {
   Subtitle1 = 'Subtitle1',
   Subtitle2 = 'Subtitle2',
 
-
+  //Link
+  Link = 'Link'
 }
 
 export enum TextAlignment {

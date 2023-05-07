@@ -78,6 +78,12 @@ export const AppTextStyles: Record<TextVariant, React.CSSProperties> = {
     fontSize: '12px',
     lineHeight: '28px',
   },
+
+  [TextVariant.Link]: {
+    fontSize: '16px',
+    fontWeight: FontWeight.Bold,
+    lineHeight: '20px',
+  },
 };
 
 function mapFontWeights(fontWeight: any) {
