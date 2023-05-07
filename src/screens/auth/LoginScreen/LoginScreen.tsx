@@ -13,6 +13,7 @@ import { Switch } from 'react-native-paper';
 import {
   Button,
   EventHubLogo,
+  Link,
   MailIcon,
   PasswordIcon,
   Text,
@@ -63,7 +64,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
   return (
     <SafeAreaView>
       <View style={tw`p-8`}>
-        <View style={tw`pt-8 mx-auto`}>
+        <View style={tw`mx-auto`}>
           <EventHubLogo />
         </View>
         <View style={tw`my-4`}>
@@ -75,11 +76,11 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
           <View style={tw`mb-2`}>
             <Controller
               control={control}
-              name="password"
+              name="email"
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextField
                   value={value}
-                  placeholder="Your password"
+                  placeholder="abc@email.com"
                   onBlur={onBlur}
                   leftIcon={<MailIcon />}
                   onChangeText={value => onChange(value)}
@@ -90,11 +91,11 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
           <View style={tw`mb-2`}>
             <Controller
               control={control}
-              name="email"
+              name="password"
               render={({ field: { onChange, value, onBlur } }) => (
                 <TextField
                   value={value}
-                  placeholder="abc@email.com"
+                  placeholder="Your password"
                   onBlur={onBlur}
                   leftIcon={<PasswordIcon />}
                   onChangeText={value => onChange(value)}
@@ -102,15 +103,18 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
               )}
             />
           </View>
-          <View>
+          <View style={tw`flex-row items-center justify-between mt-3`}>
             <Switch />
+            <Link text="Forgot Password?" underline={false} />
           </View>
         </View>
-        <Button
-          title="Login"
-          onPress={handleSubmit(onSubmit, onFormInvalid)}
-          loading={loading}
-        />
+        <View style={tw`mt-36`}>
+          <Button
+            title="Sign in"
+            onPress={handleSubmit(onSubmit, onFormInvalid)}
+            loading={loading}
+          />
+        </View>
       </View>
     </SafeAreaView>
   );
