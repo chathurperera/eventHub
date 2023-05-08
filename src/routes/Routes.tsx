@@ -6,7 +6,6 @@ import { Route, StorageKeys } from '@EH/constants';
 import {
   HomeScreen,
   LoginScreen,
-  LoginScreenProps,
   OnboardingScreen,
 } from '@EH/screens';
 import { AsyncStorageService } from '@EH/services';

@@ -47,7 +47,8 @@ enum Neutral {
   White = `#ffffff`,
   EH100 = `#ffffff31`,
   EH200 = `#E4DFDF`,
-  EH300 = `#807A7A`
+  EH300 = `#807A7A`,
+  EH400 = `#9D9898`,
 }
 
 const EventHubThemePalette = {

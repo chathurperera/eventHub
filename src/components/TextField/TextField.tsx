@@ -23,6 +23,7 @@ export function TextField({
       secureTextEntry={secureTextEntry}
       textContentType={textContentType}
       placeholder={placeholder}
+      autoComplete="off"
       placeholderTextColor={Color.SecondaryCyan.EH700}
       outlineStyle={tw`rounded-xl border-[${Color.Neutral.EH200}]`}
       style={innerTextInputStyles}
