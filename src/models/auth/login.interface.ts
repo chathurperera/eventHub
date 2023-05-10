@@ -3,11 +3,11 @@ export interface LoginUserData {
   password: string;
 }
 
-
 export interface LoginResponse {
   data: {
     email: string;
-    userName: string;
+    firstName: string;
+    lastName: string;
+    token: string;
   };
-  accessToken:string
 }
