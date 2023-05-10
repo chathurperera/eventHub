@@ -12,10 +12,10 @@ import { Switch } from 'react-native-switch';
 
 import {
   Button,
-  EventHubLogo,
   Link,
   MailIcon,
   PasswordIcon,
+  ProfileIcon,
   Text,
   TextField,
 } from '@EH/components';
@@ -27,12 +27,12 @@ import { useDispatch, useSelector } from '@EH/stores';
 import { SignupFormValues } from './signup.interface';
 import { signupValidationSchema } from './signup.validations';
 
-export type LoginScreenProps = NativeStackScreenProps<
+export type SignupScreenProps = NativeStackScreenProps<
   AppStackParamList,
-  Route.Login
+  Route.Signup
 >;
 
-export function LoginScreen({ navigation }: LoginScreenProps) {
+export function SignupScreen({ navigation }: SignupScreenProps) {
   const [rememberMe, setRememberMe] = useState(false);
 
   const onRememberMeToggle = () => {
@@ -69,23 +69,53 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <SafeAreaView>
-      <View style={tw`px-8 py-4`}>
-        <View style={tw`mx-auto`}>
-          <EventHubLogo />
-        </View>
+      <View style={tw`px-8 py-4 h-full justify-between`}>
         <View style={tw`my-4`}>
           <View style={tw`mb-2`}>
             <Text variant={TextVariant.Heading4} textAlign={TextAlignment.Left}>
-              Sign in
+              Sign up
             </Text>
           </View>
           <View style={tw`mb-2`}>
             <Controller
               control={control}
+              name="firstName"
+              render={({ field: { onChange, value, onBlur, ref } }) => (
+                <TextField
+                  ref={ref}
+                  value={value}
+                  placeholder="Your first name"
+                  onBlur={onBlur}
+                  leftIcon={<ProfileIcon />}
+                  onChangeText={value => onChange(value)}
+                />
+              )}
+            />
+          </View>
+          <View style={tw`mb-2`}>
+            <Controller
+              control={control}
+              name="lastName"
+              render={({ field: { onChange, value, onBlur, ref } }) => (
+                <TextField
+                  ref={ref}
+                  value={value}
+                  placeholder="Your last name"
+                  onBlur={onBlur}
+                  leftIcon={<ProfileIcon />}
+                  onChangeText={value => onChange(value)}
+                />
+              )}
+            />
+          </View>
+          <View style={tw`mb-2`}>
+            <Controller
+              control={control}
               name="email"
-              render={({ field: { onChange, value, onBlur } }) => (
+              render={({ field: { onChange, value, onBlur, ref } }) => (
                 <TextField
                   value={value}
+                  ref={ref}
                   placeholder="abc@email.com"
                   onBlur={onBlur}
                   leftIcon={<MailIcon />}
@@ -98,10 +128,12 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
             <Controller
               control={control}
               name="password"
-              render={({ field: { onChange, value, onBlur } }) => (
+              render={({ field: { onChange, value, onBlur, ref } }) => (
                 <TextField
+                  ref={ref}
                   value={value}
                   placeholder="Your password"
+                  secureTextEntry
                   onBlur={onBlur}
                   leftIcon={<PasswordIcon />}
                   onChangeText={value => onChange(value)}
@@ -109,38 +141,42 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
               )}
             />
           </View>
-          <View style={tw`flex-row items-center justify-between mt-3`}>
-            <Switch
-              value={rememberMe}
-              onValueChange={onRememberMeToggle}
-              circleSize={20}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundActive={Color.PrimaryBlue.EH100}
-              backgroundInactive={'gray'}
+          <View style={tw`mb-2`}>
+            <Controller
+              control={control}
+              name="password"
+              render={({ field: { onChange, value, onBlur, ref } }) => (
+                <TextField
+                  ref={ref}
+                  value={value}
+                  secureTextEntry
+                  placeholder="Confirm password"
+                  onBlur={onBlur}
+                  leftIcon={<PasswordIcon />}
+                  onChangeText={value => onChange(value)}
+                />
+              )}
             />
-            <Link text="Forgot Password?" underline={false} />
           </View>
         </View>
-        <View style={tw`mt-2`}>
-          <Button
-            title="Sign in"
-            onPress={handleSubmit(onSubmit, onFormInvalid)}
-            loading={false}
-          />
-        </View>
-        <View style={tw`my-4`}>
-          <Text variant={TextVariant.Title2} color={Color.Neutral.EH400}>
-            OR
-          </Text>
-        </View>
-        <View style={tw`mt-6`}>
-          <Text variant={TextVariant.Body1Regular}>
-            Don't have an account ?{' '}
-            <Text variant={TextVariant.Link} color={Color.PrimaryBlue.EH100}>
-              Sign up
+        <View>
+          <View style={tw`mt-2`}>
+            <Button
+              title="Sign up"
+              onPress={handleSubmit(onSubmit, onFormInvalid)}
+              loading={false}
+            />
+          </View>
+          <View style={tw`mt-6`}>
+            <Text variant={TextVariant.Body1Regular}>
+              Already have an account ?{' '}
+              <Link
+                text="Login"
+                onPress={() => navigation.navigate(Route.Login)}
+                underline={false}
+              />
             </Text>
-          </Text>
+          </View>
         </View>
       </View>
     </SafeAreaView>

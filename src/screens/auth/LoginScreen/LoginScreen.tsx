@@ -70,78 +70,84 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
 
   return (
     <SafeAreaView>
-      <View style={tw`px-8 py-4`}>
-        <View style={tw`mx-auto`}>
-          <EventHubLogo />
-        </View>
-        <View style={tw`my-4`}>
-          <View style={tw`mb-2`}>
-            <Text variant={TextVariant.Heading4} textAlign={TextAlignment.Left}>
-              Sign in
+      <View style={tw`px-8 py-4 h-full justify-between`}>
+        <View>
+          <View style={tw`mx-auto`}>
+            <EventHubLogo />
+          </View>
+          <View style={tw`my-4`}>
+            <View style={tw`mb-2`}>
+              <Text
+                variant={TextVariant.Heading4}
+                textAlign={TextAlignment.Left}>
+                Sign in
+              </Text>
+            </View>
+            <View style={tw`mb-2`}>
+              <Controller
+                control={control}
+                name="email"
+                render={({ field: { onChange, value, onBlur } }) => (
+                  <TextField
+                    value={value}
+                    placeholder="abc@email.com"
+                    onBlur={onBlur}
+                    leftIcon={<MailIcon />}
+                    onChangeText={value => onChange(value)}
+                  />
+                )}
+              />
+            </View>
+            <View style={tw`mb-2`}>
+              <Controller
+                control={control}
+                name="password"
+                render={({ field: { onChange, value, onBlur } }) => (
+                  <TextField
+                    value={value}
+                    placeholder="Your password"
+                    onBlur={onBlur}
+                    leftIcon={<PasswordIcon />}
+                    onChangeText={value => onChange(value)}
+                  />
+                )}
+              />
+            </View>
+            <View style={tw`flex-row items-center justify-between mt-3`}>
+              <Switch
+                value={rememberMe}
+                onValueChange={onRememberMeToggle}
+                circleSize={20}
+                renderActiveText={false}
+                renderInActiveText={false}
+                backgroundActive={Color.PrimaryBlue.EH100}
+                backgroundInactive={'gray'}
+              />
+              <Link text="Forgot Password?" underline={false} />
+            </View>
+          </View>
+          <View style={tw`mt-2`}>
+            <Button
+              title="Sign in"
+              onPress={handleSubmit(onSubmit, onFormInvalid)}
+              loading={false}
+            />
+          </View>
+          <View style={tw`my-4`}>
+            <Text variant={TextVariant.Title2} color={Color.Neutral.EH400}>
+              OR
             </Text>
           </View>
-          <View style={tw`mb-2`}>
-            <Controller
-              control={control}
-              name="email"
-              render={({ field: { onChange, value, onBlur } }) => (
-                <TextField
-                  value={value}
-                  placeholder="abc@email.com"
-                  onBlur={onBlur}
-                  leftIcon={<MailIcon />}
-                  onChangeText={value => onChange(value)}
-                />
-              )}
-            />
-          </View>
-          <View style={tw`mb-2`}>
-            <Controller
-              control={control}
-              name="password"
-              render={({ field: { onChange, value, onBlur } }) => (
-                <TextField
-                  value={value}
-                  placeholder="Your password"
-                  onBlur={onBlur}
-                  leftIcon={<PasswordIcon />}
-                  onChangeText={value => onChange(value)}
-                />
-              )}
-            />
-          </View>
-          <View style={tw`flex-row items-center justify-between mt-3`}>
-            <Switch
-              value={rememberMe}
-              onValueChange={onRememberMeToggle}
-              circleSize={20}
-              renderActiveText={false}
-              renderInActiveText={false}
-              backgroundActive={Color.PrimaryBlue.EH100}
-              backgroundInactive={'gray'}
-            />
-            <Link text="Forgot Password?" underline={false} />
-          </View>
+          <SocialLogin />
         </View>
-        <View style={tw`mt-2`}>
-          <Button
-            title="Sign in"
-            onPress={handleSubmit(onSubmit, onFormInvalid)}
-            loading={false}
-          />
-        </View>
-        <View style={tw`my-4`}>
-          <Text variant={TextVariant.Title2} color={Color.Neutral.EH400}>
-            OR
-          </Text>
-        </View>
-        <SocialLogin />
         <View style={tw`mt-6`}>
           <Text variant={TextVariant.Body1Regular}>
             Don't have an account ?{' '}
-            <Text variant={TextVariant.Link} color={Color.PrimaryBlue.EH100}>
-              Sign up
-            </Text>
+            <Link
+              text="Sign up"
+              onPress={() => navigation.navigate(Route.Signup)}
+              underline={false}
+            />
           </Text>
         </View>
       </View>

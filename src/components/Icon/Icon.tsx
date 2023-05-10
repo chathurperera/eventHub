@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { EventHubLogoSvg, MailIconSvg, RightArrowIconSvg,  PasswordIconSvg } from '@EH/assets';
+import { EventHubLogoSvg, MailIconSvg, RightArrowIconSvg,  PasswordIconSvg, ProfileIconSvg } from '@EH/assets';
 import { Color } from '@EH/constants';
 
 export interface SvgIconProps {
@@ -23,4 +23,8 @@ export function RightArrowIcon({ width = 13, height = 13 }: SvgIconProps) {
 
 export function PasswordIcon({ width = 22, height = 22 }: SvgIconProps) {
   return <PasswordIconSvg width={width} height={height} />;
+}
+
+export function ProfileIcon({ width = 22, height = 22 }: SvgIconProps) {
+  return <ProfileIconSvg width={width} height={height} />;
 }

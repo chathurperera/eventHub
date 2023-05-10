@@ -7,13 +7,15 @@ import {
   HomeScreen,
   LoginScreen,
   OnboardingScreen,
+  SignupScreen,
 } from '@EH/screens';
 import { AsyncStorageService } from '@EH/services';
 
 export type AppStackParamList = {
-  [Route.Login]: {};
+  [Route.Login]: undefined;
   [Route.Onboarding]: undefined;
   [Route.Home]: undefined;
+  [Route.Signup]: undefined;
 };
 
 const Stack = createNativeStackNavigator<AppStackParamList>();
@@ -52,6 +54,7 @@ export function Routes() {
           headerStyle: {},
         }}>
         <Stack.Screen name={Route.Login} component={LoginScreen} />
+        <Stack.Screen name={Route.Signup} component={SignupScreen} />
         <Stack.Screen name={Route.Onboarding} component={OnboardingScreen} />
         <Stack.Screen name={Route.Home} component={HomeScreen} />
       </Stack.Navigator>

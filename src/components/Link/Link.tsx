@@ -8,10 +8,15 @@ import { LinkPropTypes } from './link.types';
 export function Link({
   text,
   underline = true,
-  color = Color.DarkShade.EH100,
+  color = Color.PrimaryBlue.EH100,
+  onPress,
 }: LinkPropTypes) {
   return (
-    <Text variant={TextVariant.Link} underline={underline} color={color}>
+    <Text
+      onPress={onPress}
+      variant={TextVariant.Link}
+      underline={underline}
+      color={color}>
       {text}
     </Text>
   );
