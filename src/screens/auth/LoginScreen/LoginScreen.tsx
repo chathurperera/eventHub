@@ -24,6 +24,7 @@ import { Color, Route, TextAlignment, TextVariant } from '@EH/constants';
 import { AppStackParamList } from '@EH/routes';
 import { useDispatch, useSelector } from '@EH/stores';
 
+import { BaseAuthScreen } from '../components/BaseAuthScreen';
 import { SocialLogin } from './components/SocialLogin';
 import { LoginFormValues } from './login.interface';
 import { loginValidationSchema } from './login.validations';
@@ -69,7 +70,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
     console.log('errors', errors);
 
   return (
-    <SafeAreaView>
+    <BaseAuthScreen>
       <View style={tw`px-8 py-4 h-full justify-between`}>
         <View>
           <View style={tw`mx-auto`}>
@@ -151,6 +152,6 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
           </Text>
         </View>
       </View>
-    </SafeAreaView>
+    </BaseAuthScreen>
   );
 }

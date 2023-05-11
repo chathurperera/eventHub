@@ -164,7 +164,7 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
             <Button
               title="Sign up"
               onPress={handleSubmit(onSubmit, onFormInvalid)}
-              loading={false}
+              loading={loading}
             />
           </View>
           <View style={tw`mt-6`}>
