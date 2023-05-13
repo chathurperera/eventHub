@@ -1,3 +1,4 @@
+import { Color } from '@EH/constants';
 import React, { ComponentProps } from 'react';
 import { TextInput } from 'react-native-paper';
 import { StyleProp, ViewStyle } from 'react-native/types';
@@ -37,8 +38,15 @@ export interface TextFieldPropTypes extends WithRNTextInputProps {
   label?: string;
   leftIcon?: React.ReactNode,
   placeholder?: string;
+  helperTextColor?: Color;
+  textColor?: Color;
+  backgroundColor?: Color;
+  outlineColor?: Color;
+  activeOutlineColor?: Color;
   disabled?: boolean;
   secureTextEntry?: boolean;
   value?: string;
-  disabledColor?:string
+  helperText?: string;
+  disabledColor?:Color;
+  error:boolean
 }

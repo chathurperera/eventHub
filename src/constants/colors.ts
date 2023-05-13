@@ -51,16 +51,43 @@ enum Neutral {
   EH400 = `#9D9898`,
 }
 
+enum Transparency {
+  Sz100 = `#212529`,
+  Sz80 = `#212529cc`,
+  Sz64 = `#212529a3`,
+  Sz56 = `#2125298f`,
+  Sz40 = `#21252966`,
+  Sz24 = `#2125293d`,
+  Sz16 = `#21252929`,
+  Sz8 = `#21252914`,
+  Sz4 = `#2125290a`,
+  full = `#ffffff00`,
+}
+
+enum Error {
+  SzMain = `#E35F5F`,
+}
+
 const EventHubThemePalette = {
   PrimaryBlue,
   Neutral,
   SecondaryCyan,
   DarkShade,
   Accent,
-  Background
+  Error,
+  Background,
+  Transparency,
 };
 
-export type Color = PrimaryBlue | SecondaryCyan | DarkShade | Accent | Background | Neutral;
+export type Color =
+  | PrimaryBlue
+  | SecondaryCyan
+  | DarkShade
+  | Accent
+  | Background
+  | Neutral
+  | Error
+  | Transparency;
 
 export const Color = {
   ...EventHubThemePalette,

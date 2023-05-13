@@ -43,10 +43,11 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
 
   const {
     control,
+    setFocus,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { isValid, isSubmitted, errors, dirtyFields },
   } = useForm<LoginFormValues>({
-    mode: 'onChange',
+    mode: 'onSubmit',
     resolver: yupResolver(loginValidationSchema),
   });
 
@@ -56,18 +57,22 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
 
   const dispatch = useDispatch();
 
-  const onSubmit: SubmitHandler<LoginFormValues> = async userData => {
+  const onSubmit: SubmitHandler<LoginFormValues> = userData => {
+    console.log('userData', userData);
+    console.log('isValid', isValid);
+    console.log('dirtyFields', dirtyFields);
     try {
-      await dispatch.userStore.loginUserWithCredentials(userData);
+      // await dispatch.userStore.loginUs erWithCredentials(userData);
       navigation.navigate(Route.Home);
     } catch (error) {
       //TODO:: handle the error
-      console.log('error', error);
+      console.log('error on onSubmit function', error);
     }
   };
 
-  const onFormInvalid: SubmitErrorHandler<LoginFormValues> = () =>
-    console.log('errors', errors);
+  const onFormInvalid: SubmitErrorHandler<LoginFormValues> = () => {
+    console.log('errors on formInvalid errors', errors);
+  };
 
   return (
     <BaseAuthScreen>
@@ -88,13 +93,24 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
               <Controller
                 control={control}
                 name="email"
-                render={({ field: { onChange, value, onBlur } }) => (
+                render={({
+                  field: { value, onChange, onBlur, ref },
+                  fieldState: { error, isTouched },
+                }) => (
                   <TextField
-                    value={value}
-                    placeholder="abc@email.com"
-                    onBlur={onBlur}
+                    ref={ref}
                     leftIcon={<MailIcon />}
-                    onChangeText={value => onChange(value)}
+                    maxLength={256}
+                    value={value}
+                    onChangeText={onChange}
+                    placeholder="your email"
+                    onBlur={onBlur}
+                    helperText={(isTouched || isSubmitted) && error?.message}
+                    helperTextColor={Color.Accent.EH200}
+                    error={(isTouched || isSubmitted) && error !== undefined}
+                    returnKeyType={'next'}
+                    onSubmitEditing={() => setFocus('password')}
+                    autoCapitalize={'none'}
                   />
                 )}
               />
@@ -103,13 +119,17 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
               <Controller
                 control={control}
                 name="password"
-                render={({ field: { onChange, value, onBlur } }) => (
+                render={({
+                  field: { onChange, value, onBlur, ref },
+                  fieldState: { error, isTouched },
+                }) => (
                   <TextField
+                    ref={ref}
                     value={value}
                     placeholder="Your password"
                     onBlur={onBlur}
                     leftIcon={<PasswordIcon />}
-                    onChangeText={value => onChange(value)}
+                    onChangeText={onChange}
                   />
                 )}
               />
@@ -131,7 +151,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
             <Button
               title="Sign in"
               onPress={handleSubmit(onSubmit, onFormInvalid)}
-              loading={false}
+              loading={loading}
             />
           </View>
           <View style={tw`my-4`}>
@@ -143,7 +163,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
         </View>
         <View style={tw`mt-6`}>
           <Text variant={TextVariant.Body1Regular}>
-            Don't have an account ?{' '}
+            Don't have an account ?{` `}
             <Link
               text="Sign up"
               onPress={() => navigation.navigate(Route.Signup)}

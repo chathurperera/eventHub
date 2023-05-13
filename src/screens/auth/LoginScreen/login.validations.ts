@@ -1,23 +1,26 @@
 import * as yup from 'yup';
 
-const ValidPasswordRegex = /(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]/;
+export const loginErrorMessages = {
+  'email:required': 'Please enter Email ID',
+  'email:invalid': 'Invalid Email',
+  'email:max': 'Email must not be 256 letters long',
+
+  'password:required': 'Please enter Password',
+  'password:min': 'Password should have at least 8 characters',
+  'password:max': 'Password must be between 8 and 256 characters length',
+};
 
 export const loginValidationSchema = yup
   .object({
-    username: yup
+    email: yup
       .string()
-      .required('Please enter Email ID')
-      .email('Invalid Email')
-      .max(50, 'Email must not be 50 letters long'),
+      .required(loginErrorMessages['email:required'])
+      .email(loginErrorMessages['email:invalid'])
+      .max(256, loginErrorMessages['email:max']),
     password: yup
       .string()
-      .required('Please enter Password')
-      .min(8, 'Password must be at least 8 letters long')
-      .max(20, 'Password must not be 20 letters long')
-      // .matches(
-      //   ValidPasswordRegex,
-      //   'Password must contain at least one Uppercase letter, Lowercase letter, Numeric character and Special character',
-      // ),
+      .required(loginErrorMessages['password:required'])
+      .min(8, loginErrorMessages['password:min'])
+      .max(256, loginErrorMessages['password:max']),
   })
   .required();
-
