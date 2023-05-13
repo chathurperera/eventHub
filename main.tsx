@@ -6,6 +6,7 @@ import { Provider } from 'react-redux';
 import { useDeviceContext } from 'twrnc';
 
 import { tw } from '@EH/configs';
+import './src/initialize-app';
 import { store } from '@EH/stores';
 
 import App from './App';

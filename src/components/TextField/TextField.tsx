@@ -56,7 +56,7 @@ export const TextField = forwardRef<RNTextInput, TextFieldPropTypes>(function Ap
     () => (
       <Text
         variant={TextVariant.Subtitle1}
-        color={error ? Color.Accent.EH100 : helperTextColor}
+        color={error ? Color.Error.EHMain : helperTextColor}
         textAlign={TextAlignment.Auto}>
         {helperText}
       </Text>
@@ -123,10 +123,10 @@ export const TextField = forwardRef<RNTextInput, TextFieldPropTypes>(function Ap
         autoCorrect={autoCorrect}
         multiline={multiline}
         numberOfLines={numberOfLines}
-        left={leftIcon && <TextInput.Icon name={() => leftIconComponent} style={{ marginTop: '50%' }} />}
+        left={leftIcon && <TextInput.Icon icon={() => leftIconComponent} style={tw`mt-[50%]`} />}
         right={
           rightIcon && (
-            <TextInput.Icon name={() => rightIconComponent} onPress={onRightIconPress} style={{ marginTop: '50%' }} />
+            <TextInput.Icon icon={() => rightIconComponent} onPress={onRightIconPress} style={tw`mt-[50%]`} />
           )
         }
         returnKeyType={returnKeyType}

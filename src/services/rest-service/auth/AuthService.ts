@@ -17,12 +17,9 @@ export class AuthService {
         ApiErrorResponse
       >('login', data);
 
-      if (!response?.data) {
-        throw new APIError('UNKNOWN_ERROR');
-      }
-
-      return response.data;
+      return response;
     } catch (error) {
+      console.log('error',error)
       throw new APIError<ApiErrorResponse>('CLIENT_ERROR', error.data);
     }
   }

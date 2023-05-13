@@ -47,7 +47,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
     handleSubmit,
     formState: { isValid, isSubmitted, errors, dirtyFields },
   } = useForm<LoginFormValues>({
-    mode: 'onSubmit',
+    mode: 'onChange',
     resolver: yupResolver(loginValidationSchema),
   });
 
@@ -57,12 +57,12 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
 
   const dispatch = useDispatch();
 
-  const onSubmit: SubmitHandler<LoginFormValues> = userData => {
+  const onSubmit: SubmitHandler<LoginFormValues> = async userData => {
     console.log('userData', userData);
     console.log('isValid', isValid);
     console.log('dirtyFields', dirtyFields);
     try {
-      // await dispatch.userStore.loginUs erWithCredentials(userData);
+      await dispatch.userStore.loginUserWithCredentials(userData);
       navigation.navigate(Route.Home);
     } catch (error) {
       //TODO:: handle the error
@@ -128,6 +128,7 @@ export function LoginScreen({ navigation }: LoginScreenProps) {
                     value={value}
                     placeholder="Your password"
                     onBlur={onBlur}
+                    error={(isTouched || isSubmitted) && error !== undefined}
                     leftIcon={<PasswordIcon />}
                     onChangeText={onChange}
                   />
