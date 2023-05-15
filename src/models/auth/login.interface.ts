@@ -4,10 +4,8 @@ export interface LoginUserData {
 }
 
 export interface LoginResponse {
-  data: {
-    email: string;
-    firstName: string;
-    lastName: string;
-    token: string;
-  };
+  email: string;
+  firstName: string;
+  lastName: string;
+  accessToken: string;
 }
