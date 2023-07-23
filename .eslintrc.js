@@ -10,7 +10,8 @@ module.exports = {
     '@typescript-eslint/lines-between-class-members': 'off',
     '@typescript-eslint/no-loop-func': 'off',
     "no-use-before-define": "off",
-    "@typescript-eslint/no-use-before-define": "off"
+    "@typescript-eslint/no-use-before-define": "off",
+    "import/extensions": "off",
   },
   parserOptions: {
     project: './tsconfig.json',

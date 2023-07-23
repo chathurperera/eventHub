@@ -26,7 +26,10 @@
       "@EH/hooks": ["./src/hooks/index"],
       "@EH/routes": ["./src/routes/index"],
       "@EH/screens": ["./src/screens/index"],
-      "@EH/utils": ["./src/utils/index"]
+      "@EH/utils": ["./src/utils/index"],
+      "@EH/services": ["./src/services/index"],
+      "@EH/stores": ["./src/stores/index"],
+      "@EH/models": ["./src/models/index"],
       }, 
   },
   "exclude": ["node_modules"],

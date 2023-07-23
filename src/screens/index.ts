@@ -1,2 +1,3 @@
 export * from './OnboardingScreen';
-export * from './auth/LoginScreen';
+export * from './auth';
+export * from './main';

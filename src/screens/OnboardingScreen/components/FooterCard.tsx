@@ -1,22 +1,48 @@
+import React, { SetStateAction, useEffect, useState } from 'react';
 import { View } from 'react-native';
-import React from 'react';
-import {tw} from '@EH/configs';
-import { Text } from '@EH/components';
-import { TextVariant } from '@EH/constants';
 
-interface FooterCardPropTypes {}
+import { tw } from '@EH/configs';
+import { Color } from '@EH/constants';
 
-export function FooterCard() {
+import { FooterNavigation } from './FooterNavigation';
+import { FooterText } from './FooterText';
+
+interface FooterCardPropTypes {
+  setCurrentStep: React.Dispatch<SetStateAction<number>>;
+  currentStep: number;
+}
+
+export function FooterCard({
+  setCurrentStep,
+  currentStep,
+}: FooterCardPropTypes) {
+  const [title, setTitle] = useState('');
+
+  useEffect(() => {
+    switch (currentStep) {
+      case 0:
+        setTitle('Explore Upcoming and Nearby Events');
+        break;
+      case 1:
+        setTitle('Web Have Modern Events Calendar Feature');
+        break;
+      case 2:
+        setTitle('To Look Up More Events or Activities Nearby By Map');
+        break;
+      default:
+        // TODO:: Should redirect to the home page
+        break;
+    }
+  }, [currentStep]);
+
   return (
-    <View style={tw`p-10 border border-cyan-700 absolute bottom-0 inset-x-0`}>
-      <View>
-        <Text variant={TextVariant.Heading4}>
-          Explore Upcoming and Nearby Events
-        </Text>
-        <Text variant={TextVariant.Body1Regular}>
-          In publishing and graphic design, Lorem is a placeholder text commonly{' '}
-        </Text>
-      </View>
+    <View
+      style={tw`bg-[${Color.PrimaryBlue.EH100}] h-[288px] p-10 rounded-t-[48px] justify-between absolute bottom-0 inset-x-0`}>
+      <FooterText title={title} />
+      <FooterNavigation
+        setCurrentStep={setCurrentStep}
+        currentStep={currentStep}
+      />
     </View>
   );
 }

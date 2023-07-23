@@ -16,6 +16,7 @@ enum SecondaryCyan {
   EH400 = `#99FCFF`,
   EH500 = `#CCFEFF`,
   EH600 = `#E6FEFF`,
+  EH700 = `#747688`,
 }
 enum DarkShade {
   EH100 = `#120D26`,
@@ -41,15 +42,52 @@ enum Background {
   EH300 = `#E5E5E5`,
 }
 
+enum Neutral {
+  Black = `#000000`,
+  White = `#ffffff`,
+  EH100 = `#ffffff31`,
+  EH200 = `#E4DFDF`,
+  EH300 = `#807A7A`,
+  EH400 = `#9D9898`,
+}
+
+enum Transparency {
+  EH100 = `#212529`,
+  EH80 = `#212529cc`,
+  EH64 = `#212529a3`,
+  EH56 = `#2125298f`,
+  EH40 = `#21252966`,
+  EH24 = `#2125293d`,
+  EH16 = `#21252929`,
+  EH8 = `#21252914`,
+  EH4 = `#2125290a`,
+  full = `#ffffff00`,
+}
+
+enum Error {
+  EHMain = `#E35F5F`,
+}
+
 const EventHubThemePalette = {
   PrimaryBlue,
+  Neutral,
   SecondaryCyan,
   DarkShade,
   Accent,
-  Background
+  Error,
+  Background,
+  Transparency,
 };
 
-export type Color = PrimaryBlue | SecondaryCyan | DarkShade | Accent | Background;
+export type Color =
+  | PrimaryBlue
+  | SecondaryCyan
+  | DarkShade
+  | Accent
+  | Background
+  | Neutral
+  | Error
+  | Transparency;
 
 export const Color = {
   ...EventHubThemePalette,

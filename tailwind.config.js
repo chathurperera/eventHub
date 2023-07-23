@@ -5,10 +5,10 @@ module.exports = {
   theme: {
     fontFamily: {
       AirbnbCerealBlack: ['AirbnbCerealApp-Black'],
-      AirbnbCerealRegular: ['AirbnbCerealApp-Regular'],
-      AirbnbCerealExtraBold: ['AirbnbCerealApp-ExtraBold'],
-      AirbnbCerealLight: ['AirbnbCerealApp-Light'],
-      AirbnbCerealMedium: ['AirbnbCerealApp-Medium'],
+      // AirbnbCerealRegular: ['AirbnbCerealApp-Regular'],
+      // AirbnbCerealExtraBold: ['AirbnbCerealApp-ExtraBold'],
+      // AirbnbCerealLight: ['AirbnbCerealApp-Light'],
+      // AirbnbCerealMedium: ['AirbnbCerealApp-Medium'],
     },
     extend: {
       colors: Color,

@@ -1,8 +1,11 @@
-import { View, Text } from 'react-native';
 import React, { useEffect } from 'react';
-import { Routes } from './src/routes';
-import tw from 'twrnc';
+import { View } from 'react-native';
 import SplashScreen from 'react-native-splash-screen';
+
+import { tw } from '@EH/configs';
+
+import { Routes } from './src/routes';
+
 const App = () => {
   useEffect(() => {
     SplashScreen.hide();
@@ -11,7 +14,6 @@ const App = () => {
   return (
     <View style={tw`flex-1`}>
       <Routes />
-      {/* <Text>Helloo</Text> */}
     </View>
   );
 };

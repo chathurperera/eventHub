@@ -3,7 +3,8 @@ import React from 'react';
 
 const FontWeight = {
   Light: 300,
-  Regular: 400,
+  Normal: 400,
+  Medium: 500,
   Bold: 600,
 };
 
@@ -25,28 +26,28 @@ export const AppTextStyles: Record<TextVariant, React.CSSProperties> = {
     lineHeight: '48px',
   },
   [TextVariant.Heading4]: {
-    fontWeight: FontWeight.Regular,
+    fontWeight: FontWeight.Medium,
     fontSize: '24px',
     lineHeight: '36px',
   },
   [TextVariant.Heading5]: {
-    fontWeight: FontWeight.Regular,
+    fontWeight: FontWeight.Medium,
     fontSize: '22px',
     lineHeight: '32px',
   },
 
   [TextVariant.Title1]: {
-    fontWeight: FontWeight.Regular,
+    fontWeight: FontWeight.Medium,
     fontSize: '18px',
     lineHeight: '40px',
   },
   [TextVariant.Title2]: {
-    fontWeight: FontWeight.Regular,
+    fontWeight: FontWeight.Medium,
     fontSize: '16px',
     lineHeight: '36px',
   },
   [TextVariant.Title3]: {
-    fontWeight: FontWeight.Regular,
+    fontWeight: FontWeight.Medium,
     fontSize: '15px',
     lineHeight: '32px',
   },
@@ -76,6 +77,12 @@ export const AppTextStyles: Record<TextVariant, React.CSSProperties> = {
     fontWeight: FontWeight.Light,
     fontSize: '12px',
     lineHeight: '28px',
+  },
+
+  [TextVariant.Link]: {
+    fontSize: '16px',
+    fontWeight: FontWeight.Bold,
+    lineHeight: '20px',
   },
 };
 
@@ -111,7 +118,7 @@ export function getAppTextStyles(variant: TextVariant) {
       case TextVariant.Body1Regular:
       case TextVariant.Body2Regular:
       case TextVariant.Body3Regular:
-        textStyles += ' font-AirbnbCerealExtraBold';
+        textStyles += ' font-AirbnbCerealBlack';
         break;
     }
   
