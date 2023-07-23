@@ -1,6 +1,6 @@
 import { createModel } from '@rematch/core';
 
-import { LoginUserData } from '@EH/models';
+import { LoginUserData, SignupUserData } from '@EH/models';
 import { AuthService } from '@EH/services';
 
 import { RootModel } from '..';
@@ -44,6 +44,11 @@ export const userStore = createModel<RootModel>()({
       const data = await AuthService.loginUserWithCredentials(payload);
       dispatch.userStore.setAccessToken(data.accessToken);
       dispatch.userStore.setIsAuthenticated(true);
+    },
+
+    async registerUser(payload: SignupUserData) {
+      await AuthService.signupUser(payload);
+      //TODO:: save required data in future
     },
 
     async logout() {

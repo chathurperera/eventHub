@@ -8,7 +8,6 @@ import {
   useForm,
 } from 'react-hook-form';
 import { SafeAreaView, View } from 'react-native';
-import { Switch } from 'react-native-switch';
 
 import {
   Button,
@@ -35,14 +34,10 @@ export type SignupScreenProps = NativeStackScreenProps<
 export function SignupScreen({ navigation }: SignupScreenProps) {
   const [rememberMe, setRememberMe] = useState(false);
 
-  const onRememberMeToggle = () => {
-    setRememberMe(!rememberMe);
-  };
-
   const {
     control,
     handleSubmit,
-    formState: { errors, isValid },
+    formState: { errors, isValid, isSubmitted },
   } = useForm<SignupFormValues>({
     mode: 'onChange',
     resolver: yupResolver(signupValidationSchema),
@@ -56,7 +51,7 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
 
   const onSubmit: SubmitHandler<SignupFormValues> = async userData => {
     try {
-      await dispatch.userStore.loginUserWithCredentials(userData);
+      await dispatch.userStore.registerUser(userData);
       navigation.navigate(Route.Home);
     } catch (error) {
       //TODO:: handle the error
@@ -80,10 +75,14 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
             <Controller
               control={control}
               name="firstName"
-              render={({ field: { onChange, value, onBlur, ref } }) => (
+              render={({
+                field: { onChange, value, onBlur, ref },
+                fieldState: { error, isTouched },
+              }) => (
                 <TextField
                   ref={ref}
                   value={value}
+                  error={(isTouched || isSubmitted) && error !== undefined}
                   placeholder="Your first name"
                   onBlur={onBlur}
                   leftIcon={<ProfileIcon />}
@@ -96,10 +95,14 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
             <Controller
               control={control}
               name="lastName"
-              render={({ field: { onChange, value, onBlur, ref } }) => (
+              render={({
+                field: { onChange, value, onBlur, ref },
+                fieldState: { error, isTouched },
+              }) => (
                 <TextField
                   ref={ref}
                   value={value}
+                  error={(isTouched || isSubmitted) && error !== undefined}
                   placeholder="Your last name"
                   onBlur={onBlur}
                   leftIcon={<ProfileIcon />}
@@ -112,9 +115,13 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
             <Controller
               control={control}
               name="email"
-              render={({ field: { onChange, value, onBlur, ref } }) => (
+              render={({
+                field: { onChange, value, onBlur, ref },
+                fieldState: { error, isTouched },
+              }) => (
                 <TextField
                   value={value}
+                  error={(isTouched || isSubmitted) && error !== undefined}
                   ref={ref}
                   placeholder="abc@email.com"
                   onBlur={onBlur}
@@ -128,10 +135,14 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
             <Controller
               control={control}
               name="password"
-              render={({ field: { onChange, value, onBlur, ref } }) => (
+              render={({
+                field: { onChange, value, onBlur, ref },
+                fieldState: { error, isTouched },
+              }) => (
                 <TextField
                   ref={ref}
                   value={value}
+                  error={(isTouched || isSubmitted) && error !== undefined}
                   placeholder="Your password"
                   secureTextEntry
                   onBlur={onBlur}
@@ -144,11 +155,15 @@ export function SignupScreen({ navigation }: SignupScreenProps) {
           <View style={tw`mb-2`}>
             <Controller
               control={control}
-              name="password"
-              render={({ field: { onChange, value, onBlur, ref } }) => (
+              name="confirmedPassword"
+              render={({
+                field: { onChange, value, onBlur, ref },
+                fieldState: { error, isTouched },
+              }) => (
                 <TextField
                   ref={ref}
                   value={value}
+                  error={(isTouched || isSubmitted) && error !== undefined}
                   secureTextEntry
                   placeholder="Confirm password"
                   onBlur={onBlur}

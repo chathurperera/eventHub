@@ -5,7 +5,7 @@ import { TextInput } from 'react-native-paper';
 import { tw } from '@EH/configs';
 import { Color, TextAlignment, TextVariant } from '@EH/constants';
 
-import { Text } from '../Typography';
+import { Text } from '../../Typography';
 import { TextFieldPropTypes } from './TextField.types';
 
 //TODO::handle scroll on focus
@@ -29,7 +29,7 @@ export const TextField = forwardRef<RNTextInput, TextFieldPropTypes>(function Ap
     // disabledColor = Color.Neutral.Sz700,
     blurOnSubmit,
     onSubmitEditing,
-    activeOutlineColor = Color.PrimaryBlue.EH500,
+    activeOutlineColor = Color.PrimaryBlue.EH100,
     outlineColor = Color.Neutral.EH200,
     onEndEditing,
     maxLength,
@@ -37,12 +37,12 @@ export const TextField = forwardRef<RNTextInput, TextFieldPropTypes>(function Ap
     textColor = Color.DarkShade.EH100,
     error,
     placeholder,
-    autoCapitalize,
+    autoCapitalize = "none",
     textContentType,
     autoComplete,
     disabledColor,
     onRightIconPress,
-    autoCorrect,
+    autoCorrect = false,
     multiline,
     numberOfLines,
     returnKeyType,
